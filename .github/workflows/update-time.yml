@@ -1,0 +1,36 @@
+name: Update Time Daily # 每日触发更新
+# 这是一个 GitHub Actions 工作流，用于每天更新 time.txt 文件
+# 文件内容为当前时间，格式为 "YYYY-MM-DD HH:MM:SS TZ"。
+
+on:
+  schedule:
+    # 每天 00:00 UTC 运行 (如果需要其他时区，请调整)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  update-time:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Update time.txt
+      run: |
+        # 获取当前时间并写入time.txt
+        echo "$(date '+%Y-%m-%d %H:%M:%S %Z')" > time.txt
+        
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add time.txt
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Auto-update time.txt - $(date '+%Y-%m-%d %H:%M:%S')"
+          git push
+        fi
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
