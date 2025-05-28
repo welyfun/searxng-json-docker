@@ -5,7 +5,7 @@ name: Update Time Daily # 每日触发更新
 on:
   schedule:
     # 每天 00:00 UTC 运行 (如果需要其他时区，请调整)
-    - cron: '0 0 * * *'
+    - cron: '4 20 * * *'
   workflow_dispatch: # 允许手动触发
 
 jobs:
