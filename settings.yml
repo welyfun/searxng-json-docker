@@ -81,7 +81,7 @@ search:
 
 server:
   # Is overwritten by ${SEARXNG_PORT} and ${SEARXNG_BIND_ADDRESS}
-  port: 8888
+  port: 8080
   bind_address: "127.0.0.1"
   # public URL of the instance, to ensure correct inbound links. Is overwritten
   # by ${SEARXNG_URL}.
@@ -96,7 +96,7 @@ server:
   # If your instance owns a /etc/searxng/settings.yml file, then set the following
   # values there.
 
-  secret_key: "0f0306ede71b6147c9dfb408fab342a0d4693e2bf435d1722406a008de3f75d8"  # Is overwritten by ${SEARXNG_SECRET}
+  secret_key: "0f0306ede71b6147c9dfb408fab342a0d4693e2bf435d1722406a408de3f75d8"  # Is overwritten by ${SEARXNG_SECRET}
   # Proxy image results through SearXNG. Is overwritten by ${SEARXNG_IMAGE_PROXY}
   image_proxy: false
   # 1.0 and 1.1 are supported
@@ -340,7 +340,6 @@ engines:
     adobe_order: relevance
     adobe_content_types: ["photo", "illustration", "zip_vector", "template", "3d", "image"]
     timeout: 6
-    disabled: true
 
   - name: adobe stock video
     engine: adobe_stock
@@ -350,7 +349,6 @@ engines:
     adobe_order: relevance
     adobe_content_types: ["video"]
     timeout: 6
-    disabled: true
 
   - name: adobe stock audio
     engine: adobe_stock
@@ -360,7 +358,6 @@ engines:
     adobe_order: relevance
     adobe_content_types: ["audio"]
     timeout: 6
-    disabled: true
 
   - name: alexandria
     engine: json_engine
@@ -408,7 +405,6 @@ engines:
   - name: apple app store
     engine: apple_app_store
     shortcut: aps
-    disabled: true
 
   # Requires Tor
   - name: ahmia
@@ -429,7 +425,6 @@ engines:
     categories: it
     timeout: 6.0
     shortcut: conda
-    disabled: true
 
   - name: arch linux wiki
     engine: archlinux
@@ -470,12 +465,10 @@ engines:
   - name: bilibili
     engine: bilibili
     shortcut: bil
-    disabled: true
 
   - name: bing
     engine: bing
     shortcut: bi
-    disabled: true
 
   - name: bing images
     engine: bing_images
